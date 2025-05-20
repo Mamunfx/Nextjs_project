@@ -8,7 +8,7 @@ import { FaCartPlus } from "react-icons/fa";
 const Navbar = () => {
     return (
         <div >
-          <div className='flex justify-between  bg-sky-400 px-4 py-2 items-center '>
+          <div className='flex justify-between  bg-sky-400 px-10 py-2 items-center '>
             <div className="">
               <p className='text-sm text-white'> dolor sit, amet consectetur adipisicing elit. Pariatur, voluptatibus</p>
             </div>
@@ -24,19 +24,19 @@ const Navbar = () => {
             </div>
 
             <div className="dropdown dropdown-start">
-              <div tabIndex={0} role="button" className='btn btn-ghost text-white p-0 text-md font-bold '>$usd <FaAngleDown /></div>
+              <div tabIndex={0} role="button" className='btn btn-ghost text-white p-0 text-md font-bold '>$ Usd <FaAngleDown /></div>
               <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-fit p-2 shadow-sm">
                 <li><a>USD</a></li>
                 <li><a>BDt</a></li>
               </ul>
             </div>
 
-            <button className='btn btn-ghost text-white p-0 text-md font-bold'> <MdOutlineAccountCircle className='text-xl'/>
-            My account</button>
+            <Link href="/login"><button className='btn btn-ghost text-white p-0 text-md font-bold'> <MdOutlineAccountCircle className='text-xl'/>
+            My account</button></Link>
             </div>
           </div>
 
-        <div className="navbar bg-base-100 shadow-sm px-4">
+        <div className="navbar bg-base-100 shadow-sm px-10">
           <div className="navbar-start">
             <div className="dropdown">
               <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -75,9 +75,14 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="navbar-end">
-          <div className='flex items-center gap-4 text-2xl text-gray-600'>
-          <PiHeartbeatThin />
-          <FaCartPlus />
+          <div className='flex items-center justify-center align-middle gap-4 text-2xl text-gray-600'>
+            <div>
+            <PiHeartbeatThin />
+            </div>
+              <div className="indicator">
+                <span className="indicator-item badge p-0 px-1 bg-green-400 rounded-full text-xs text-white ">12</span>
+                <FaCartPlus className='mt-2'/>
+              </div>
           </div>
           </div>
         </div>
