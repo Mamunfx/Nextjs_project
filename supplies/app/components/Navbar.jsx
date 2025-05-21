@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import React from 'react';
 import { MdOutlineAccountCircle } from "react-icons/md";
@@ -31,8 +32,11 @@ const Navbar = () => {
               </ul>
             </div>
 
-            <Link href="/login"><button className='btn btn-ghost text-white p-0 text-md font-bold'> <MdOutlineAccountCircle className='text-xl'/>
-            My account</button></Link>
+            <button className='btn btn-ghost text-white p-0 text-md font-bold '>
+              <Link href="/login" className='flex gap-2'>
+              <MdOutlineAccountCircle className='text-xl'/>
+              My account</Link>
+            </button>
             </div>
           </div>
 
@@ -46,7 +50,7 @@ const Navbar = () => {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow ">
                 <li><Link href="/">Home</Link></li>
-                <li><Link href="/">Shop by brand </Link></li>
+                <li><Link href="/brand">Shop by brand </Link></li>
                 <li><Link href="/">Shop by category</Link></li>
                 <li><Link href="/">Blog</Link></li>
                 <li><Link href="/">Shop</Link></li>
@@ -64,9 +68,9 @@ const Navbar = () => {
 
               <div className="indicator mr-3">
                 <span className="indicator-item badge badge-xs p-0 bg-green-400 ">New</span>
-                <li><Link href="/">Shop by brand </Link></li>
+                <li><Link href="/brand">Shop by brand </Link></li>
               </div>
-                <li><Link href="/">Shop by brand </Link></li>
+               
 
                 <li><Link href="/">Shop by category</Link></li>
                 <li><Link href="/">Blog</Link></li>

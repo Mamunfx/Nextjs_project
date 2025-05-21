@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import { FaAngleDown } from 'react-icons/fa';
 import { GiHamburgerMenu } from "react-icons/gi";
