@@ -5,44 +5,36 @@ const slides = [
   {
     id: 'slide1',
     bg: 'https://i.ibb.co/LXZhrsP0/slide2-back.jpg',
-    img: 'https://enovathemes.com/propharm/wp-content/uploads/jurosta.svg',
-    title: 'Box Office News!',
-    description: 'Provident cupiditate voluptatem et in. Quaerat fugiat.',
-    prev: 'slide4',
+    img: 'https://enovathemes.com/propharm/wp-content/uploads/slider-1-as6.png',
+    title: 'Cold and flu protection!',
+    description: 'For all family members',
+    prev: 'slide3',
     next: 'slide2',
   },
   {
     id: 'slide2',
     bg: 'https://i.ibb.co/tMjV4G6M/slide1-back-3.jpg',
-    img: 'https://enovathemes.com/propharm/wp-content/uploads/jurosta.svg',
-    title: 'Latest Movie Releases',
-    description: 'Stay ahead with the newest blockbusters.',
+    img: 'https://enovathemes.com/propharm/wp-content/uploads/slider-1-asset-1.png',
+    title: 'Vitamins and suppliments',
+    description: 'Pyrodixine vitamin b6.',
     prev: 'slide1',
     next: 'slide3',
   },
   {
     id: 'slide3',
     bg: 'https://i.ibb.co/LXZhrsP0/slide2-back.jpg',
-    img: 'https://enovathemes.com/propharm/wp-content/uploads/jurosta.svg',
-    title: 'Critics Reviews',
-    description: 'Expert reviews and ratings all in one place.',
+    img: 'https://enovathemes.com/propharm/wp-content/uploads/slider-1-as8.png',
+    title: 'Ultra organic face cream',
+    description: 'New released product.',
     prev: 'slide2',
-    next: 'slide4',
-  },
-  {
-    id: 'slide4',
-    bg: 'https://i.ibb.co/XkMF3rwv/slide4-back.jpg',
-    img: 'https://enovathemes.com/propharm/wp-content/uploads/jurosta.svg',
-    title: 'Exclusive Interviews',
-    description: 'Behind-the-scenes with your favorite stars.',
-    prev: 'slide3',
     next: 'slide1',
   },
+ 
 ];
 
 const Hero = () => {
   return (
-    <div className="carousel w-full">
+    <div className="carousel w-full rounded-lg">
       {slides.map(({ id, bg, img, title, description, prev, next }) => (
         <div key={id} id={id} className="carousel-item relative w-full">
           {/* background + overlay */}
@@ -57,13 +49,14 @@ const Hero = () => {
             <div className="hero-content relative z-10 text-white flex-col lg:flex-row-reverse p-8 gap-8">
               <img
                 src={img}
-                className="w-64 rounded-lg shadow-2xl"
+                className=" h-96 rounded-lg shadow-2xl"
                 alt="Illustration"
               />
               <div className="max-w-lg">
-                <h1 className="text-4xl font-extrabold mb-4">{title}</h1>
-                <p className="mb-6">{description}</p>
-                <button className="btn btn-primary">Get Started</button>
+              <p className="mb-6 text-gray-600">{description}</p>
+                <h1 className="text-4xl font-extrabold mb-4 text-gray-600 w-4/6">{title}</h1>
+               
+                <button className="btn rounded-full text-gray-600">Buy it now</button>
               </div>
             </div>
           </div>

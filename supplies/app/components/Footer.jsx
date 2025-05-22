@@ -3,7 +3,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <div className='relative mt-16 '>
+    <div className='relative mt-32 '>
       {/* Newsletter section with background image */}
       <div
         className="flex justify-between items-center w-9/12 mx-auto px-8 py-10 bg-cover bg-center rounded-lg absolute -top-20 left-36"
@@ -21,7 +21,7 @@ const Footer = () => {
             placeholder="Enter your email"
             className="input input-bordered w-full bg-white text-gray-700 rounded-l-full"
           />
-          <button className='btn bg-orange-400  rounded-r-full'>search</button>
+          <button className='btn bg-orange-400 text-white  rounded-r-full'>search</button>
         </div>
       </div>
 

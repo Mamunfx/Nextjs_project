@@ -12,9 +12,9 @@ const FloatingSection = () => {
   <Hero />
 </div>
 
-<div className="lg:col-span-1 flex flex-col gap-6">
-  <FloatingItem />
-  <FloatingItem />
+<div className="lg:col-span-1 flex flex-col gap-6 ">
+  <FloatingItem imgUrl={'https://enovathemes.com/propharm/wp-content/uploads/banner-image-18.png'}/>
+  <FloatingItem imgUrl={'https://enovathemes.com/propharm/wp-content/uploads/banner-image-19.png'}/>
 </div>
 </div>
         </div>

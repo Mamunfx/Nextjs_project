@@ -1,8 +1,8 @@
 'use client'
-import React, { useRef } from 'react'
+
+import React, { useRef, useState, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
-
 
 // Import Swiper styles
 import 'swiper/css'
@@ -11,108 +11,54 @@ import 'swiper/css/pagination'
 
 import ProductCard from './ProductCard'
 
-const products = [
-  {
-    id: 1,
-    imageSrc:
-      'https://enovathemes.com/propharm/wp-content/uploads/product42-300x300.jpg',
-    imageAlt: 'Vitamin C Immune Boost Capsules',
-    badges: ['Organic', 'New'],
-    title: 'Vitamin C Immune Boost Capsules',
-    rating: 4.2,
-    reviewsCount: 34,
-    price: '24.99',
-  },
-  {
-    id: 2,
-    imageSrc: '/images/omega-3.jpg',
-    imageAlt: 'Omega-3 Fish Oil Softgels',
-    badges: ['High Potency', 'Best Seller'],
-    title: 'Omega-3 Fish Oil Softgels',
-    rating: 4.8,
-    reviewsCount: 127,
-    price: '19.99',
-  },
-  {
-    id: 3,
-    imageSrc: '/images/probiotic.jpg',
-    imageAlt: 'Probiotic Daily Balance Capsules',
-    badges: ['Gluten Free', 'Clinically Proven'],
-    title: 'Probiotic Daily Balance Capsules',
-    rating: 4.5,
-    reviewsCount: 58,
-    price: '29.99',
-  },
-  {
-    id: 4,
-    imageSrc: '/images/probiotic.jpg',
-    imageAlt: 'Probiotic Daily Balance Capsules',
-    badges: ['Gluten Free', 'Clinically Proven'],
-    title: 'Probiotic Daily Balance Capsules',
-    rating: 4.5,
-    reviewsCount: 58,
-    price: '29.99',
-  },
-  {
-    id: 5,
-    imageSrc: '/images/probiotic.jpg',
-    imageAlt: 'Probiotic Daily Balance Capsules',
-    badges: ['Gluten Free', 'Clinically Proven'],
-    title: 'Probiotic Daily Balance Capsules',
-    rating: 4.5,
-    reviewsCount: 58,
-    price: '29.99',
-  },
-  {
-    id: 6,
-    imageSrc: '/images/probiotic.jpg',
-    imageAlt: 'Probiotic Daily Balance Capsules',
-    badges: ['Gluten Free', 'Clinically Proven'],
-    title: 'Probiotic Daily Balance Capsules',
-    rating: 4.5,
-    reviewsCount: 58,
-    price: '29.99',
-  },
-  {
-    id: 7,
-    imageSrc: '/images/probiotic.jpg',
-    imageAlt: 'Probiotic Daily Balance Capsules',
-    badges: ['Gluten Free', 'Clinically Proven'],
-    title: 'Probiotic Daily Balance Capsules',
-    rating: 4.5,
-    reviewsCount: 58,
-    price: '29.99',
-  },
-  {
-    id: 8,
-    imageSrc: '/images/probiotic.jpg',
-    imageAlt: 'Probiotic Daily Balance Capsules',
-    badges: ['Gluten Free', 'Clinically Proven'],
-    title: 'Probiotic Daily Balance Capsules',
-    rating: 4.5,
-    reviewsCount: 58,
-    price: '29.99',
-  },
-  {
-    id: 9,
-    imageSrc: '/images/probiotic.jpg',
-    imageAlt: 'Probiotic Daily Balance Capsules',
-    badges: ['Gluten Free', 'Clinically Proven'],
-    title: 'Probiotic Daily Balance Capsules',
-    rating: 4.5,
-    reviewsCount: 58,
-    price: '29.99',
-  },
-  
-]
-
 export default function FeaturedProduct() {
   const prevRef = useRef(null)
   const nextRef = useRef(null)
 
+  const [products, setProducts] = useState([])
+  const [loading, setLoading]   = useState(true)
+  const [error, setError]       = useState(null)
+
   const handleAdd = (productId) => {
     console.log('Add to cart', productId)
     // your cart logic
+  }
+
+  useEffect(() => {
+    async function fetchProducts() {
+      setLoading(true)
+      setError(null)
+      try {
+        const res = await fetch('/api/products')
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        const data = await res.json()
+        // normalize price to number
+        const cleaned = data.map((p) => ({
+          ...p,
+          price:
+            typeof p.price === 'number'
+              ? p.price
+              : parseFloat(p.price) || 0,
+        }))
+        setProducts(cleaned)
+      } catch (err) {
+        console.error('Failed to fetch products:', err)
+        setError(err.message || 'Failed to load products')
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchProducts()
+  }, [])
+
+  if (loading) {
+    return <p className="text-center py-8">Loading featured products…</p>
+  }
+  if (error) {
+    return <p className="text-center py-8 text-red-500">Error: {error}</p>
+  }
+  if (!products.length) {
+    return <p className="text-center py-8">No featured products found.</p>
   }
 
   return (
@@ -132,7 +78,8 @@ export default function FeaturedProduct() {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           <button
@@ -146,7 +93,8 @@ export default function FeaturedProduct() {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d="M9 5l7 7-7 7" />
             </svg>
           </button>
         </div>
@@ -170,14 +118,14 @@ export default function FeaturedProduct() {
           swiper.navigation.update()
         }}
         breakpoints={{
-          640: { slidesPerView: 2 },
-          768: { slidesPerView: 3 },
+          640:  { slidesPerView: 2 },
+          768:  { slidesPerView: 3 },
           1024: { slidesPerView: 4 },
           1280: { slidesPerView: 5 },
         }}
       >
         {products.map((product) => (
-          <SwiperSlide key={product.id}>
+          <SwiperSlide key={product._id || product.id}>
             <ProductCard
               imageSrc={product.imageSrc}
               imageAlt={product.imageAlt}
@@ -186,7 +134,7 @@ export default function FeaturedProduct() {
               rating={product.rating}
               reviewsCount={product.reviewsCount}
               price={product.price}
-              onAddToCart={() => handleAdd(product.id)}
+              onAddToCart={() => handleAdd(product._id || product.id)}
             />
           </SwiperSlide>
         ))}

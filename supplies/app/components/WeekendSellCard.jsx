@@ -41,7 +41,7 @@ export default function WeekendSellCard({
 
       <div className="card-body flex flex-col justify-between p-6 w-full">
         <div>
-          {onSale && <span className="badge badge-error mb-2">Sale</span>}
+          {onSale && <span className="badge bg-green-400 mb-2">Sale</span>}
           <h2 className="card-title">{title}</h2>
           {badges.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-2">
@@ -63,7 +63,7 @@ export default function WeekendSellCard({
         </div>
         <div className="card-actions justify-between mt-6">
           <p className="text-2xl font-bold">${price}</p>
-          <button onClick={onAddToCart} className="btn btn-primary">
+          <button onClick={onAddToCart} className="btn rounded-full">
             Add to Cart
           </button>
         </div>

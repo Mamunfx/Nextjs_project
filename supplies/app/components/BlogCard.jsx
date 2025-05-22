@@ -13,7 +13,7 @@ export default function BlogCard({
   href = '#',
 }) {
   return (
-    <div className="w-full max-w-xs sm:max-w-sm rounded-lg overflow-hidden mx-auto bg-white shadow hover:shadow-lg transition">
+    <div className="w-full max-w-xs sm:max-w-sm rounded-lg overflow-hidden mx-auto bg-white shadow hover:shadow-lg transition ">
       {/* Image */}
       <div className="relative w-full h-48 sm:h-56 bg-gray-50">
         <Image
