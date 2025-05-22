@@ -32,7 +32,7 @@ export default function ProductCard({
           src={imageSrc}
           alt={imageAlt}
           layout="fill"
-          objectFit="cover"
+          objectFit="fit"
         />
       </div>
       <div className="p-4 flex flex-col space-y-3">

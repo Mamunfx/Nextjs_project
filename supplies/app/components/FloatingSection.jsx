@@ -13,8 +13,8 @@ const FloatingSection = () => {
 </div>
 
 <div className="lg:col-span-1 flex flex-col gap-6 ">
-  <FloatingItem imgUrl={'https://enovathemes.com/propharm/wp-content/uploads/banner-image-18.png'}/>
-  <FloatingItem imgUrl={'https://enovathemes.com/propharm/wp-content/uploads/banner-image-19.png'}/>
+  <FloatingItem bgUrl={'https://enovathemes.com/propharm/wp-content/uploads/slide2_back.jpg'} imgUrl={'https://enovathemes.com/propharm/wp-content/uploads/banner-image-18.png'}/>
+  <FloatingItem bgUrl={'https://enovathemes.com/propharm/wp-content/uploads/slide5_back.jpg'} imgUrl={'https://enovathemes.com/propharm/wp-content/uploads/banner-image-19.png'}/>
 </div>
 </div>
         </div>

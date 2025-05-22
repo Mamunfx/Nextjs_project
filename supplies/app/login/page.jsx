@@ -1,8 +1,36 @@
 'use client'
-import React from 'react'
+
+import React, { useState } from 'react'
 import Link from 'next/link'
+import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 export default function Login() {
+  const router = useRouter()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError('')
+
+    const res = await signIn('credentials', {
+      redirect: false,
+      email,
+      password
+    })
+
+    if (res?.error) {
+      console.log('Login failed:', res.error)
+      setError('Invalid email or password')
+    } else {
+      console.log('Login successful:', res)
+      alert(' Login successful!')
+      router.push('/')
+    }
+  }
+
   return (
     <div className="hero bg-base-200 min-h-screen flex items-center justify-center px-6 py-12">
       <div className="max-w-4xl w-full flex flex-col lg:flex-row bg-base-100 shadow-2xl rounded-lg overflow-hidden gap-4 my-8">
@@ -26,6 +54,10 @@ export default function Login() {
                          flex items-center justify-center gap-2
                          transition-transform transform hover:scale-105
                          hover:bg-sky-400 hover:text-white hover:border-sky-400"
+              onClick={() => {
+                console.log('Google login clicked – no provider configured')
+                alert('Google login not available')
+              }}
             >
               <img
                 src="https://img.icons8.com/color/48/google-logo.png"
@@ -44,15 +76,25 @@ export default function Login() {
           </div>
 
           {/* Login Form */}
-          <form className="space-y-4 w-full max-w-[320px]" onSubmit={(e) => e.preventDefault()}>
+          <form
+            className="space-y-4 w-full max-w-[320px]"
+            onSubmit={handleSubmit}
+          >
+            {error && (
+              <p className="text-red-500 text-sm text-center">{error}</p>
+            )}
+
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
                 className="input input-bordered w-full"
+                required
               />
             </div>
             <div className="form-control w-full">
@@ -61,8 +103,11 @@ export default function Login() {
               </label>
               <input
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="*******"
                 className="input input-bordered w-full"
+                required
               />
             </div>
             <div className="flex justify-between items-center w-full max-w-[320px]">
@@ -73,7 +118,10 @@ export default function Login() {
                 />
                 <span className="text-sm">Remember me</span>
               </label>
-              <Link href="/register" className="text-xs text-sky-700 hover:underline">
+              <Link
+                href="/register"
+                className="text-xs text-sky-700 hover:underline"
+              >
                 Don't have an account? Sign up
               </Link>
             </div>

@@ -1,8 +1,8 @@
 "use client"
 import React from 'react';
-
-const FloatingItem = ({imgUrl}) => {
-  const bgUrl = "https://i.ibb.co/tMjV4G6M/slide1-back-3.jpg";
+import { MdKeyboardArrowRight } from "react-icons/md";
+const FloatingItem = ({imgUrl,bgUrl}) => {
+  
  const imgSrc = imgUrl;
   return (
     <div
@@ -17,11 +17,11 @@ const FloatingItem = ({imgUrl}) => {
           </p>
           <h1 className=" font-bold text-2xl mb-2 text-gray-600">Vitamins and <span className='text-xl text-gray-600'>suppliments</span></h1>
           
-          <button className="btn rounded-full bg-green-400 border-none text-white">View more</button>
+          <button className="btn rounded-full bg-green-400 border-none text-white">View more <MdKeyboardArrowRight></MdKeyboardArrowRight></button>
         </div>
         <img
           src={imgSrc}
-          className=" rounded-lg shadow-2xl"
+          className=" rounded-lg shadow-2xl max-h-44"
           alt="Stock"
         />
       </div>

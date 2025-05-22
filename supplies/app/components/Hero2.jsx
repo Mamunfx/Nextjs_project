@@ -1,5 +1,6 @@
 "use client"
 import React from 'react';
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 const Hero2 = () => {
     return (
@@ -16,7 +17,7 @@ const Hero2 = () => {
               <p className="mb-6">Pyridoxine Vitamin B6</p>
                 <h1 className="text-4xl font-extrabold mb-4">Vitamins & Supplements</h1>
                 
-                <button className="btn bg-green-400 rounded-full text-white">View More</button>
+                <button className="btn bg-green-400 rounded-full text-white">View More <MdKeyboardArrowRight /></button>
               </div>
               <img
                 src="https://enovathemes.com/propharm/wp-content/uploads/banner-image-15.png"
@@ -37,7 +38,7 @@ const Hero2 = () => {
               <p className="mb-6">Pyridoxine Vitamin B6</p>
                 <h1 className="text-4xl font-extrabold mb-4">Vitamins & Supplements</h1>
                 
-                <button className="btn bg-green-400 rounded-full text-white">View More</button>
+                <button className="btn bg-green-400 rounded-full text-white">View More <MdKeyboardArrowRight /></button>
               </div>
               <img
                 src="https://enovathemes.com/propharm/wp-content/uploads/banner-image-14.png"

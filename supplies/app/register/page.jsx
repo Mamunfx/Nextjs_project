@@ -1,6 +1,8 @@
-'use client'
-import React from 'react'
-import Link from 'next/link'
+"use client";
+
+import React, { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   FaRocket,
   FaChartLine,
@@ -10,9 +12,47 @@ import {
   FaEnvelope,
   FaImage,
   FaLock,
-} from 'react-icons/fa'
+} from "react-icons/fa";
 
 export default function Register() {
+  const router = useRouter();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [password, setPassword] = useState("");
+  const [termsChecked, setTermsChecked] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const payload = {
+      firstName,
+      lastName,
+      email,
+      imageUrl,
+      password,
+      terms: termsChecked,
+    };
+
+    const res = await fetch("/api/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    setLoading(false);
+
+    if (res.ok) {
+      router.push("/login?registered=1");
+    } else {
+      const { message } = await res.json();
+      alert("Error: " + (message || res.statusText));
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-sky-50 to-white flex items-center justify-center px-4 py-12">
       <div className="max-w-7xl w-full bg-white rounded-2xl shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-2">
@@ -20,20 +60,19 @@ export default function Register() {
         <div className="hidden lg:flex flex-col justify-center items-start bg-sky-400 p-12 space-y-6 text-white rounded-r-[8rem]">
           <h2 className="text-4xl font-extrabold">Welcome to Journeyman</h2>
           <p className="text-lg">
-            Join a community of creators and unlock premium tools to accelerate your workflow.
-            Register now and start earning coins!
+            Join a community of creators and unlock premium tools to accelerate
+            your workflow. Register now and start earning coins!
           </p>
           <ul className="space-y-4">
             <li className="flex items-center">
-              <FaRocket className="mr-3 text-2xl" />
-              <span>Fast onboarding</span>
+              <FaRocket className="mr-3 text-2xl" /> <span>Fast onboarding</span>
             </li>
             <li className="flex items-center">
-              <FaChartLine className="mr-3 text-2xl" />
+              <FaChartLine className="mr-3 text-2xl" />{" "}
               <span>Powerful analytics</span>
             </li>
             <li className="flex items-center">
-              <FaHeadset className="mr-3 text-2xl" />
+              <FaHeadset className="mr-3 text-2xl" />{" "}
               <span>24/7 priority support</span>
             </li>
           </ul>
@@ -52,8 +91,7 @@ export default function Register() {
           <div className="w-full flex justify-center">
             <button
               type="button"
-              className="w-9/12 max-w-xs flex items-center justify-center gap-2 py-2 mb-6 border-2 border-gray-200 rounded-full
-                         hover:border-sky-400 hover:bg-sky-50 transition"
+              className="w-9/12 max-w-xs flex items-center justify-center gap-2 py-2 mb-6 border-2 border-gray-200 rounded-full hover:border-sky-400 hover:bg-sky-50 transition"
             >
               <img
                 src="https://img.icons8.com/color/48/google-logo.png"
@@ -73,7 +111,7 @@ export default function Register() {
             <hr className="w-1/3 border-gray-300" />
           </div>
 
-          <form className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             {/* Name Fields */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="relative">
@@ -81,8 +119,10 @@ export default function Register() {
                 <input
                   type="text"
                   placeholder="First Name"
-                  className="pl-10 w-full border border-gray-200 rounded-lg py-2
-                             focus:ring-2 focus:ring-sky-300 outline-none transition"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  required
+                  className="pl-10 w-full border border-gray-200 rounded-lg py-2 focus:ring-2 focus:ring-sky-300 outline-none transition"
                 />
               </div>
               <div className="relative">
@@ -90,8 +130,10 @@ export default function Register() {
                 <input
                   type="text"
                   placeholder="Last Name"
-                  className="pl-10 w-full border border-gray-200 rounded-lg py-2
-                             focus:ring-2 focus:ring-sky-300 outline-none transition"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  required
+                  className="pl-10 w-full border border-gray-200 rounded-lg py-2 focus:ring-2 focus:ring-sky-300 outline-none transition"
                 />
               </div>
             </div>
@@ -102,23 +144,23 @@ export default function Register() {
               <input
                 type="email"
                 placeholder="Email Address"
-                className="pl-10 w-full border border-gray-200 rounded-lg py-2
-                           focus:ring-2 focus:ring-sky-300 outline-none transition"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="pl-10 w-full border border-gray-200 rounded-lg py-2 focus:ring-2 focus:ring-sky-300 outline-none transition"
               />
             </div>
 
-            {/* Profile Image Upload */}
+            {/* Profile Image URL */}
             <div className="relative">
-            
+              <FaImage className="absolute left-3 top-3 text-gray-400" />
               <input
-                type="file"
-                accept="image/*"
-                className="block w-full text-sm text-gray-500
-                           file:mr-4 file:py-2 file:px-4
-                           file:rounded file:border-0
-                           file:text-sm file:font-semibold
-                           file:bg-sky-50 file:text-sky-400
-                           hover:file:bg-sky-100 transition"
+                type="url"
+                placeholder="Profile Image URL"
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+                required
+                className="pl-10 w-full border border-gray-200 rounded-lg py-2 focus:ring-2 focus:ring-sky-300 outline-none transition"
               />
             </div>
 
@@ -128,30 +170,23 @@ export default function Register() {
               <input
                 type="password"
                 placeholder="Password"
-                className="pl-10 w-full border border-gray-200 rounded-lg py-2
-                           focus:ring-2 focus:ring-sky-300 outline-none transition"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="pl-10 w-full border border-gray-200 rounded-lg py-2 focus:ring-2 focus:ring-sky-300 outline-none transition"
               />
-            </div>
-
-            {/* Role Selector */}
-            <div>
-              <select
-                className="w-full border border-gray-200 rounded-lg py-2 px-4
-                           focus:ring-2 focus:ring-sky-300 outline-none transition"
-              >
-                <option>Worker</option>
-                <option>Buyer</option>
-              </select>
             </div>
 
             {/* Terms Checkbox */}
             <label className="flex items-center gap-2 mt-2 text-gray-600">
               <input
                 type="checkbox"
+                checked={termsChecked}
+                onChange={(e) => setTermsChecked(e.target.checked)}
                 className="w-4 h-4 text-sky-400 border-gray-400 rounded focus:ring-sky-400 bg-white"
               />
               <span className="text-sm">
-                I agree to the{' '}
+                I agree to the{" "}
                 <Link href="/terms" className="text-sky-600 hover:underline">
                   Terms & Privacy
                 </Link>
@@ -162,18 +197,17 @@ export default function Register() {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="w-9/12 max-w-xs flex items-center justify-center py-2
-                           bg-sky-400 text-white font-semibold rounded-full shadow
-                           hover:bg-sky-500 transition"
+                disabled={loading}
+                className="w-9/12 max-w-xs flex items-center justify-center py-2 bg-sky-400 text-white font-semibold rounded-full shadow hover:bg-sky-500 transition disabled:opacity-50"
               >
-                Register
+                {loading ? "Registering…" : "Register"}
               </button>
             </div>
           </form>
 
           {/* Already have an account */}
           <p className="mt-6 text-center text-gray-500">
-            Already registered?{' '}
+            Already registered?{" "}
             <Link href="/login" className="text-sky-700 hover:underline">
               Log in
             </Link>
@@ -181,5 +215,5 @@ export default function Register() {
         </div>
       </div>
     </div>
-  )
+  );
 }

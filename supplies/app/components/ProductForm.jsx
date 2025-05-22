@@ -19,13 +19,12 @@ export default function ProductForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const product = {
       imageSrc,
       imageAlt,
       badges: badges.split(",").map((b) => b.trim()).filter(Boolean),
       title,
-      description,          // include in payload
+      description, 
       rating: Number(rating),
       reviewsCount: Number(reviewsCount),
       price: parseFloat(price),
