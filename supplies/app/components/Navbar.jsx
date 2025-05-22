@@ -106,7 +106,7 @@ export default function Navbar() {
                     <li><Link href="/shop">Shop by brand</Link></li>
                   </div>
                   <li><Link href="/shop">Shop by category</Link></li>
-                  <li><Link href="/">Blog</Link></li>
+                  <li><Link href="/blog">Blog</Link></li>
                   <li><Link href="/shop">Shop</Link></li>
                  
                 </>
@@ -139,7 +139,7 @@ export default function Navbar() {
                   <li><Link href="/shop">Shop by brand</Link></li>
                 </div>
                 <li><Link href="/shop">Shop by category</Link></li>
-                <li><Link href="/">Blog</Link></li>
+                <li><Link href="/blog">Blog</Link></li>
                 <li><Link href="/shop">Shop</Link></li>
              
               </>
