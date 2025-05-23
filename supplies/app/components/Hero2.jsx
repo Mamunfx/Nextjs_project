@@ -5,7 +5,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 const Hero2 = () => {
     return (
         <div>
-            <div className='grid grid-cols-12  gap-4 '>
+            <div className='grid lg:grid-cols-12  gap-4 '>
           <div
             className="hero  bg-cover bg-center relative col-span-7 rounded-lg "
             style={{ backgroundImage: `url(https://enovathemes.com/propharm/wp-content/uploads/slide5_back.jpg)` }}

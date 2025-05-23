@@ -1,13 +1,14 @@
-import dbConnect from '@/lib/dbConnect'
-import { ObjectId } from 'mongodb'
-import { notFound } from 'next/navigation'
-import Image from 'next/image'
-import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa'
+import { ObjectId } from "mongodb"
+import dbConnect from "@/lib/dbConnect"
+import { notFound } from "next/navigation"
+import Image from "next/image"
+import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa"
+import AddToCart from "@/app/products/[id]/AddToCart"
 
 export default async function ProductPage({ params }) {
   let product
   try {
-    const col = dbConnect('productCollection')
+    const col = dbConnect("productCollection")
     product = await col.findOne({ _id: new ObjectId(params.id) })
   } catch {
     notFound()
@@ -31,72 +32,51 @@ export default async function ProductPage({ params }) {
   return (
     <main className="max-w-5xl mx-auto p-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Image */}
-        <div className="relative w-full h-0 pb-[100%] rounded-lg overflow-hidden shadow-lg">
+        <div className="relative w-full h-0 pb-[100%] rounded-lg overflow-hidden">
           <Image
             src={imageSrc}
             alt={imageAlt}
             fill
-            className="object-cover transition-transform duration-300 hover:scale-105"
+            className="object-cover"
           />
         </div>
 
-        {/* Details */}
         <div className="flex flex-col justify-between">
           <div>
-            {/* Badges */}
             <div className="flex flex-wrap gap-2 mb-4">
-              {badges.map((badge) => (
+              {badges.map((b) => (
                 <span
-                  key={badge}
-                  className="text-sm font-medium bg-sky-100 text-sky-400 px-2 py-1 rounded-full"
+                  key={b}
+                  className="text-sm bg-sky-100 text-sky-600 px-2 py-1 rounded-full"
                 >
-                  {badge}
+                  {b}
                 </span>
               ))}
             </div>
-
-            {/* Title */}
-            <h1 className="text-4xl font-extrabold text-gray-900 mb-4">
-              {title}
-            </h1>
-
-            {/* Rating & Reviews */}
+            <h1 className="text-4xl font-bold mb-4">{title}</h1>
             <div className="flex items-center mb-6">
-              <div className="flex items-center">
-                {[...Array(5)].map((_, idx) => {
-                  if (idx < filledStars) {
-                    return <FaStar key={idx} className="h-5 w-5 text-yellow-500" />
-                  } else if (idx === filledStars && hasHalfStar) {
-                    return <FaStarHalfAlt key={idx} className="h-5 w-5 text-yellow-500" />
-                  }
-                  return <FaRegStar key={idx} className="h-5 w-5 text-gray-300" />
-                })}
-              </div>
+              {[...Array(5)].map((_, i) => {
+                if (i < filledStars) return <FaStar key={i} className="text-yellow-500" />
+                if (i === filledStars && hasHalfStar) return <FaStarHalfAlt key={i} className="text-yellow-500" />
+                return <FaRegStar key={i} className="text-gray-300" />
+              })}
               <span className="ml-2 text-gray-600">
-                {reviewsCount} review{reviewsCount !== 1 && 's'}
+                {reviewsCount} review{reviewsCount !== 1 && "s"}
               </span>
             </div>
-
-            {/* Description */}
-            <p className="text-gray-700 leading-relaxed whitespace-pre-line mb-6">
-              {description}
-            </p>
+            <p className="mb-6 text-gray-700 whitespace-pre-line">{description}</p>
           </div>
 
-          {/* Price & Actions */}
-          <div className="mt-4">
-            <div className="text-3xl font-bold text-gray-900 mb-4">
+          <div>
+            <div className="text-3xl font-extrabold mb-4">
               ${price.toFixed(2)}
             </div>
-            <div className="flex gap-4">
-              <button className="flex-1 bg-green-400 text-white px-4 py-3 rounded-full font-semibold shadow hover:bg-green-600 transition ">
-                Add to Cart
-              </button>
-              <button className="flex-1 border border-gray-300 text-gray-700 px-4 py-3 rounded-full font-medium hover:bg-gray-100 transition">
-                Buy Now
-              </button>
-            </div>
+            <AddToCart
+              productId={params.id}
+              productName={title}
+              productImage={imageSrc}
+              productPrice={price}
+            />
           </div>
         </div>
       </div>
@@ -105,7 +85,7 @@ export default async function ProductPage({ params }) {
 }
 
 export async function generateStaticParams() {
-  const col = dbConnect('productCollection')
+  const col = dbConnect("productCollection")
   const ids = await col.find({}, { projection: { _id: 1 } }).toArray()
   return ids.map((doc) => ({ id: doc._id.toString() }))
 }

@@ -3,10 +3,10 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <div className='relative mt-32 '>
+    <div className='relative mt-32'>
       {/* Newsletter section with background image */}
       <div
-        className="flex justify-between items-center w-9/12 mx-auto px-8 py-10 bg-cover bg-center rounded-lg absolute -top-20 left-36"
+        className="lg:flex hidden justify-between items-center w-9/12 mx-auto px-8 py-10 bg-cover bg-center rounded-lg absolute -top-20 left-[13%] "
         style={{
           backgroundImage: "url('https://enovathemes.com/propharm/wp-content/uploads/slide1_back-3.jpg')",
         }}
@@ -26,7 +26,7 @@ const Footer = () => {
       </div>
 
       {/* Main footer links */}
-      <footer className="footer sm:footer-horizontal bg-gray-50 p-10 border-t border-gray-200 pt-20">
+      <footer className="footer sm:footer-horizontal bg-gray-50 p-10 border-t border-gray-200 pt-20 text-xl">
         <nav>
           <h6 className="footer-title">Services</h6>
           <a className="link link-hover">Branding</a>

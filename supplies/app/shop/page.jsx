@@ -46,7 +46,7 @@ export default function ShopPage() {
         Shop all products
       </h1>
 
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center gap-2">
         <button className="btn rounded-xl text-gray-600">
           Default sorting <FaAngleDown />
         </button>
@@ -70,7 +70,7 @@ export default function ShopPage() {
         />
       </div>
 
-      <div className="grid grid-cols-4 gap-4 mt-6">
+      <div className="grid lg:grid-cols-4 gap-4 mt-6">
         {products.map((product) => {
           const id = product._id ?? product.id
           return (

@@ -64,8 +64,8 @@ export default function BlogCard({
         {/* Read More button */}
         <div className="mt-3">
           <Link
-            href={href}
-            className="inline-block px-4 py-2  text-sky-400 font-medium rounded-full hover:bg-sky-500 transition"
+            href="/"
+            className="inline-block px-4 py-2 bg-sky-400 text-white font-medium rounded-full hover:bg-sky-500 transition"
           >
             Read More 
           </Link>

@@ -8,12 +8,16 @@ import { FiPhoneCall } from "react-icons/fi";
 
 const Searching = () => {
     return (
-      <div className='w-11/12 mx-auto'>
+      <div className='w-11/12 mx-auto lg:block hidden'>
         <div className="pb-3  border-gray-200 flex items-center justify-between">
 
           <div className='flex gap-8'>
             <div className="">
-              <button className="btn btn-outline rounded-full text-gray-600"><GiHamburgerMenu /> All categories</button>
+              <button className="btn btn-outline rounded-full text-gray-600"> <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none"
+                   viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                      d="M4 6h16M4 12h8m-8 6h16" />
+              </svg> All categories</button>
             </div>
 
             <div className='flex items-center '>
@@ -21,8 +25,9 @@ const Searching = () => {
               <div className="dropdown dropdown-start">
                 <div tabIndex={0} role="button" className='btn rounded-none rounded-l-full text-gray-600'>Category <FaAngleDown /></div>
                 <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-fit p-2 shadow-sm">
-                  <li><a>USD</a></li>
-                  <li><a>BDt</a></li>
+                  <li><a>Beauty</a></li>
+                  <li><a>Medicine</a></li>
+                  <li><a>Fitness</a></li>
                 </ul>
               </div>
 

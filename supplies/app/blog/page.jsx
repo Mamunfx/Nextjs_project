@@ -273,11 +273,11 @@ const posts = [
 const page = () => {
     return (
         <div className="my-6 w-11/12 mx-auto space-y-8">
-            <h1 className="text-4xl text-gray-600 font-semibold text-center my-10">
+            <h1 className="text-4xl text-gray-600 font-semibold text-center my-10 ">
                 Explore our blogs
             </h1>
 
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center gap-2">
         <button className="btn rounded-xl text-gray-600">
           Default sorting <FaAngleDown />
         </button>
@@ -291,7 +291,7 @@ const page = () => {
       </div>
 
 
-      <div className='grid grid-cols-3 gap-4'>
+      <div className='grid lg:grid-cols-3 gap-4'>
       {posts.map((post) => (
             <BlogCard  key={post.id} {...post}></BlogCard>
         
