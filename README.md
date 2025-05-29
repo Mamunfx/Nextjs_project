@@ -4,11 +4,6 @@ An e-commerce web application for buying medicine and supplements, built with Ne
 
 ---
 
-## Admin related information 
-
-- Admin email : admin@gmail.com
-- Admin password : 123321
-
 ## Table of Contents
 
 - [Overview](#overview)
