@@ -19,7 +19,7 @@ An e-commerce web application for buying medicine and supplements, built with Ne
 
 ## Overview
 
-**Nextjs_Project** is a modern, user-friendly online store designed for purchasing medicines and health supplements. The platform provides a seamless experience for both customers and administrators, with features such as product search, cart management, secure checkout, and order history.
+**Supplies** is a modern, user-friendly online store designed for purchasing medicines and health supplements. The platform provides a seamless experience for both customers and administrators, with features such as product search, cart management, secure checkout, and order history.
 
 ---
 
